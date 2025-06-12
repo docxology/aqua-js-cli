@@ -1,0 +1,9 @@
+ok 1 - Setup test environment
+ok 2 - Create AQUA file for README.md
+ok 3 - Create AQUA file for LICENSE
+ok 4 - Create AQUA file for notarize.ts
+ok 5 - Create link between files
+ok 6 - Verify linked README.md
+ok 7 - Cleanup test files
+# passed all 7 test(s)
+1..7

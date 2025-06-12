@@ -1,0 +1,6 @@
+file name example-form.json.aqua.json
+-> reading pure file example-form.json
+Checking aqua file: example-form.json.aqua.json
+-> reading aqua file example-form.json.aqua.json
+✅ All revisions verified successfully
+

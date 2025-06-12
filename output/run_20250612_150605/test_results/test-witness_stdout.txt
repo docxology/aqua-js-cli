@@ -1,0 +1,24 @@
+ok 1 - Setup test environment
+ok 2 - Check README.md
+ok 3 - Create AQUA file for README.md
+ok 4 - Witness README.md
+ok 5 - Verify witnessed README.md
+ok 6 - Remove revision from README.md
+ok 7 - Check notarize.ts
+ok 8 - Create AQUA file for notarize.ts
+ok 9 - Witness notarize.ts TSA
+ok 10 - Verify notarize.ts
+ok 11 - Check LICENSE
+ok 12 - Create AQUA file for LICENSE
+ok 13 - Create AQUA file for formatter.ts
+not ok 14 - Create AQUA file for README.md
+#	
+#	    $notarize README.md &&
+#	    test -f README.md.aqua.json
+#	
+ok 15 - Witness LICENSE
+ok 16 - Verify witnessed LICENSE 
+ok 17 - Verify witnessed formatter.ts
+ok 18 - Cleanup test files
+# failed 1 among 18 test(s)
+1..18

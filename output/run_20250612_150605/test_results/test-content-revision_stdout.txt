@@ -1,0 +1,7 @@
+Current Path: /Users/tetra/Documents/GitHub/aqua-js-cli/tests
+ok 1 - Setup test environment
+ok 2 - Create initial AQUA file for README with content parameter
+ok 3 - Check README.md.aqua.json contains a content
+ok 4 - Check README.md.aqua.json contains a content
+# passed all 4 test(s)
+1..4

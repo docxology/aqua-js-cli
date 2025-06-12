@@ -1,0 +1,24 @@
+AQUA JS CLI COMPREHENSIVE TEST SUMMARY
+==================================================
+
+Run Timestamp: 2025-06-12T15:12:14.942847
+Output Directory: /Users/tetra/Documents/GitHub/aqua-js-cli/output/run_20250612_150605
+
+OVERALL RESULTS:
+Success Rate: 45/52 (86.5%)
+
+BREAKDOWN:
+- Environment Setup: 3/3
+- State Management: 10/10
+- Existing File Scenarios: 3/7
+- README Examples: 23/24
+- Test Suite: 6/8
+
+FAILED TESTS:
+- existing_file_scenarios.existing_license_basic
+- existing_file_scenarios.existing_readme_basic
+- existing_file_scenarios.existing_license_content
+- existing_file_scenarios.existing_license_scalar
+- readme_examples.witness_eth_license
+- test_suite.make_test
+- test_suite.test-witness

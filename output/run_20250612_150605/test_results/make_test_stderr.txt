@@ -1,0 +1,1 @@
+make: *** [tests/test-witness.sh] Error 1

@@ -1,0 +1,6 @@
+file name LICENSE.aqua.json
+-> reading pure file ./LICENSE
+Checking aqua file: ./LICENSE.aqua.json
+-> reading aqua file ./LICENSE.aqua.json
+✅ All revisions verified successfully
+

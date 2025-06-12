@@ -1,0 +1,8 @@
+file name test_content_file.txt.aqua.json
+ ➡️  1.Verifying Revision: 0xf3018933704bf58334b0946484b21d160bc4bd8828a52526885d9153881f6ef6
+	 📄 Type: File.
+	 ✅ ⏺️  Scalar revision verified
+  
+
+ ✅ All revisions verified successfully
+

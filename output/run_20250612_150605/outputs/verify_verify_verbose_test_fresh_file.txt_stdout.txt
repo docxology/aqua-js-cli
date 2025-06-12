@@ -1,0 +1,11 @@
+file name test_fresh_file.txt.aqua.json
+-> reading pure file test_fresh_file.txt
+Checking aqua file: test_fresh_file.txt.aqua.json
+-> reading aqua file test_fresh_file.txt.aqua.json
+ ➡️  1.Verifying Revision: 0xf3cc25d4f3cf6c46f1e02f2eace7c1fd711a10dc5134f1608fbdd7d7f288568e
+	 📄 Type: File.
+	 ✅ ⏺️  Scalar revision verified
+  
+
+ ✅ All revisions verified successfully
+

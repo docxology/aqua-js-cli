@@ -1,0 +1,6 @@
+file name test_scalar_file.txt.aqua.json
+-> reading pure file test_scalar_file.txt
+Checking aqua file: test_scalar_file.txt.aqua.json
+-> reading aqua file test_scalar_file.txt.aqua.json
+✅ All revisions verified successfully
+

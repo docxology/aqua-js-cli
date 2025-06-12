@@ -1,0 +1,15 @@
+# Python requirements for run_comprehensive_tests.py
+# All dependencies are part of Python 3.6+ standard library
+# No external dependencies required
+
+# Note: This script uses only standard library modules:
+# - os
+# - sys  
+# - subprocess
+# - json
+# - time
+# - shutil
+# - datetime
+# - pathlib
+# - typing
+# - logging 

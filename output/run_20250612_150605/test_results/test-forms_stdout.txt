@@ -1,0 +1,12 @@
+ok 1 - Setup test environment
+ok 2 - Verify test files exist
+ok 3 - Notarize initial form
+ok 4 - Notarize attestation form
+ok 5 - Verify initial form
+ok 6 - Delete date_of_birth field
+ok 7 - Verify after deletion
+ok 8 - Update date_of_birth field
+ok 9 - Final verification
+ok 10 - Cleanup test files
+# passed all 10 test(s)
+1..10

@@ -1,0 +1,30 @@
+file name LICENSE.aqua.json
+-> reading pure file ./LICENSE
+Checking aqua file: ./LICENSE.aqua.json
+-> reading aqua file ./LICENSE.aqua.json
+-> reading pure file example-form.json
+Checking aqua file: example-form.json.aqua.json
+-> reading aqua file example-form.json.aqua.json
+ ➡️  1.Verifying Revision: 0xd2d0207144043d6d23153dd1f48515670c22ab42cf4e38102180c901f1051b30
+	 📄 Type: File.
+	 ✅ ⏺️  Scalar revision verified
+  
+
+ ➡️  2.Verifying Revision: 0x17e5d1c6e79f299d6cde34417e413cfe86cded18f1b85f8e469025f70ad707a6
+	 🔏 Type: Signature ethereum:eip-191
+	 🔏 Wallet address:  0x568A94A8f0f3Dc0B245B853bEf572075c1Df5c50
+	 ✅ ⏺️  Scalar revision verified
+  
+
+ ➡️  3.Verifying Revision: 0xd442ccac561af728eb879f4c8852e5c4eff71aa61b6b123561abb0748f0aa46e
+	 📝 Type: Form.
+		 ✅ The following fields were verified:
+		 ✅ ✅ forms_date_of_birth: October 2, 1945
+
+		 ✅ ✅ forms_name: Martin Hellman
+
+	 ✅ 🌿 Tree  revision verified
+  
+
+ ✅ All revisions verified successfully
+

@@ -1,0 +1,11 @@
+file name test_scalar_file.txt.aqua.json
+-> reading pure file test_scalar_file.txt
+Checking aqua file: test_scalar_file.txt.aqua.json
+-> reading aqua file test_scalar_file.txt.aqua.json
+ ➡️  1.Verifying Revision: 0x8c5bb6bb7b9b1962e456d1f1a54d1c5ea1490745869b0713c325f1efe2238f7d
+	 📄 Type: File.
+	 ✅ ⏺️  Scalar revision verified
+  
+
+ ✅ All revisions verified successfully
+

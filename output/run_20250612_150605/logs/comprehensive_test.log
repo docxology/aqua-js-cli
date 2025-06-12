@@ -1,0 +1,350 @@
+2025-06-12 15:06:05 - INFO - Aqua Test Runner initialized at /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:06:05 - INFO - Output directory: /Users/tetra/Documents/GitHub/aqua-js-cli/output/run_20250612_150605
+2025-06-12 15:06:05 - INFO - Starting comprehensive Aqua JS CLI test run with enhanced state management
+2025-06-12 15:06:05 - INFO - === ENVIRONMENT SETUP ===
+2025-06-12 15:06:05 - INFO - Running setup step: npm_install
+2025-06-12 15:06:05 - INFO - Running command: npm install
+2025-06-12 15:06:05 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:06:10 - INFO - Command completed successfully in 5.25s
+2025-06-12 15:06:10 - INFO - Running setup step: npm_build
+2025-06-12 15:06:10 - INFO - Running command: npm run build
+2025-06-12 15:06:10 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:06:12 - INFO - Command completed successfully in 2.23s
+2025-06-12 15:06:12 - INFO - Running setup step: check_dist
+2025-06-12 15:06:12 - INFO - Running command: ls -la dist/
+2025-06-12 15:06:12 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:06:12 - INFO - Command completed successfully in 0.02s
+2025-06-12 15:06:12 - INFO - Environment setup completed. Success: True
+2025-06-12 15:06:12 - INFO - === CLEANING UP EXISTING AQUA FILES ===
+2025-06-12 15:06:12 - INFO - Found 7 existing .aqua.json files:
+2025-06-12 15:06:12 - INFO -   - test_scalar_file.txt.aqua.json
+2025-06-12 15:06:12 - INFO -   - README.md.aqua.json
+2025-06-12 15:06:12 - INFO -   - example-form.json.aqua.json
+2025-06-12 15:06:12 - INFO -   - LICENSE.aqua.json
+2025-06-12 15:06:12 - INFO -   - test_modify_file.txt.aqua.json
+2025-06-12 15:06:12 - INFO -   - test_fresh_file.txt.aqua.json
+2025-06-12 15:06:12 - INFO -   - test_content_file.txt.aqua.json
+2025-06-12 15:06:12 - INFO - Backed up and removed: test_scalar_file.txt.aqua.json
+2025-06-12 15:06:12 - INFO - Backed up and removed: README.md.aqua.json
+2025-06-12 15:06:12 - INFO - Backed up and removed: example-form.json.aqua.json
+2025-06-12 15:06:12 - INFO - Backed up and removed: LICENSE.aqua.json
+2025-06-12 15:06:12 - INFO - Backed up and removed: test_modify_file.txt.aqua.json
+2025-06-12 15:06:12 - INFO - Backed up and removed: test_fresh_file.txt.aqua.json
+2025-06-12 15:06:12 - INFO - Backed up and removed: test_content_file.txt.aqua.json
+2025-06-12 15:06:12 - INFO - Cleanup completed - ready for fresh notarization tests
+2025-06-12 15:06:12 - INFO - === CREATING TEST FILES FOR COMPREHENSIVE TESTING ===
+2025-06-12 15:06:12 - INFO - Created test file: test_fresh_file.txt
+2025-06-12 15:06:12 - INFO - Created test file: test_modify_file.txt
+2025-06-12 15:06:12 - INFO - Created test file: test_content_file.txt
+2025-06-12 15:06:12 - INFO - Created test file: test_scalar_file.txt
+2025-06-12 15:06:12 - INFO - === RUNNING STATE MANAGEMENT TESTS ===
+2025-06-12 15:06:12 - INFO - Running state test: fresh_file_notarize - Fresh file notarization
+2025-06-12 15:06:12 - INFO - Running command: ./dist/aqua.js notarize test_fresh_file.txt
+2025-06-12 15:06:12 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:06:13 - INFO - Command completed successfully in 0.56s
+2025-06-12 15:06:13 - INFO - State test fresh_file_notarize succeeded: Fresh file notarization
+2025-06-12 15:06:13 - DEBUG - Copied test_fresh_file.txt.aqua.json to output directory
+2025-06-12 15:06:13 - INFO - Running state test: fresh_file_verify - Verify fresh notarization
+2025-06-12 15:06:13 - INFO - Running command: ./dist/aqua.js verify test_fresh_file.txt.aqua.json
+2025-06-12 15:06:13 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:06:13 - INFO - Command completed successfully in 0.26s
+2025-06-12 15:06:13 - INFO - State test fresh_file_verify succeeded: Verify fresh notarization
+2025-06-12 15:06:13 - DEBUG - Copied test_fresh_file.txt.aqua.json to output directory
+2025-06-12 15:06:13 - INFO - Running state test: modify_file_step1 - Initial notarization
+2025-06-12 15:06:13 - INFO - Running command: ./dist/aqua.js notarize test_modify_file.txt
+2025-06-12 15:06:13 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:06:13 - INFO - Command completed successfully in 0.41s
+2025-06-12 15:06:13 - INFO - State test modify_file_step1 succeeded: Initial notarization
+2025-06-12 15:06:13 - DEBUG - Copied test_modify_file.txt.aqua.json to output directory
+2025-06-12 15:06:13 - DEBUG - Copied test_fresh_file.txt.aqua.json to output directory
+2025-06-12 15:06:13 - INFO - Running state test: modify_file_step2 - Modify file content
+2025-06-12 15:06:13 - INFO - Running command: echo 'Modified content' >> test_modify_file.txt
+2025-06-12 15:06:13 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:06:13 - INFO - Command completed successfully in 0.01s
+2025-06-12 15:06:13 - INFO - State test modify_file_step2 succeeded: Modify file content
+2025-06-12 15:06:13 - DEBUG - Copied test_modify_file.txt.aqua.json to output directory
+2025-06-12 15:06:13 - DEBUG - Copied test_fresh_file.txt.aqua.json to output directory
+2025-06-12 15:06:13 - INFO - Running state test: modify_file_step3 - Re-notarize modified file
+2025-06-12 15:06:13 - INFO - Running command: ./dist/aqua.js notarize test_modify_file.txt
+2025-06-12 15:06:13 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:06:14 - INFO - Command completed successfully in 0.24s
+2025-06-12 15:06:14 - INFO - State test modify_file_step3 succeeded: Re-notarize modified file
+2025-06-12 15:06:14 - DEBUG - Copied test_modify_file.txt.aqua.json to output directory
+2025-06-12 15:06:14 - DEBUG - Copied test_fresh_file.txt.aqua.json to output directory
+2025-06-12 15:06:14 - INFO - Running state test: modify_file_verify - Verify revision chain
+2025-06-12 15:06:14 - INFO - Running command: ./dist/aqua.js verify test_modify_file.txt.aqua.json -v
+2025-06-12 15:06:14 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:06:14 - INFO - Command completed successfully in 0.23s
+2025-06-12 15:06:14 - INFO - State test modify_file_verify succeeded: Verify revision chain
+2025-06-12 15:06:14 - DEBUG - Copied test_modify_file.txt.aqua.json to output directory
+2025-06-12 15:06:14 - DEBUG - Copied test_fresh_file.txt.aqua.json to output directory
+2025-06-12 15:06:14 - INFO - Running state test: content_fresh_notarize - Fresh content revision
+2025-06-12 15:06:14 - INFO - Running command: ./dist/aqua.js notarize --content test_content_file.txt
+2025-06-12 15:06:14 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:06:14 - INFO - Command completed successfully in 0.27s
+2025-06-12 15:06:14 - INFO - State test content_fresh_notarize succeeded: Fresh content revision
+2025-06-12 15:06:14 - DEBUG - Copied test_modify_file.txt.aqua.json to output directory
+2025-06-12 15:06:14 - DEBUG - Copied test_fresh_file.txt.aqua.json to output directory
+2025-06-12 15:06:14 - DEBUG - Copied test_content_file.txt.aqua.json to output directory
+2025-06-12 15:06:14 - INFO - Running state test: content_verify - Verify content revision
+2025-06-12 15:06:14 - INFO - Running command: ./dist/aqua.js verify test_content_file.txt.aqua.json
+2025-06-12 15:06:14 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:06:14 - INFO - Command completed successfully in 0.24s
+2025-06-12 15:06:14 - INFO - State test content_verify succeeded: Verify content revision
+2025-06-12 15:06:14 - DEBUG - Copied test_modify_file.txt.aqua.json to output directory
+2025-06-12 15:06:14 - DEBUG - Copied test_fresh_file.txt.aqua.json to output directory
+2025-06-12 15:06:14 - DEBUG - Copied test_content_file.txt.aqua.json to output directory
+2025-06-12 15:06:14 - INFO - Running state test: scalar_fresh_notarize - Fresh scalar revision
+2025-06-12 15:06:14 - INFO - Running command: ./dist/aqua.js notarize --scalar test_scalar_file.txt
+2025-06-12 15:06:14 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:06:15 - INFO - Command completed successfully in 0.23s
+2025-06-12 15:06:15 - INFO - State test scalar_fresh_notarize succeeded: Fresh scalar revision
+2025-06-12 15:06:15 - DEBUG - Copied test_scalar_file.txt.aqua.json to output directory
+2025-06-12 15:06:15 - DEBUG - Copied test_modify_file.txt.aqua.json to output directory
+2025-06-12 15:06:15 - DEBUG - Copied test_fresh_file.txt.aqua.json to output directory
+2025-06-12 15:06:15 - DEBUG - Copied test_content_file.txt.aqua.json to output directory
+2025-06-12 15:06:15 - INFO - Running state test: scalar_verify - Verify scalar revision
+2025-06-12 15:06:15 - INFO - Running command: ./dist/aqua.js verify test_scalar_file.txt.aqua.json
+2025-06-12 15:06:15 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:06:15 - INFO - Command completed successfully in 0.29s
+2025-06-12 15:06:15 - INFO - State test scalar_verify succeeded: Verify scalar revision
+2025-06-12 15:06:15 - DEBUG - Copied test_scalar_file.txt.aqua.json to output directory
+2025-06-12 15:06:15 - DEBUG - Copied test_modify_file.txt.aqua.json to output directory
+2025-06-12 15:06:15 - DEBUG - Copied test_fresh_file.txt.aqua.json to output directory
+2025-06-12 15:06:15 - DEBUG - Copied test_content_file.txt.aqua.json to output directory
+2025-06-12 15:06:15 - INFO - State management tests completed. Success rate: 10/10
+2025-06-12 15:06:15 - INFO - === RUNNING EXISTING FILE SCENARIOS ===
+2025-06-12 15:06:15 - INFO - Setup for existing file tests: setup_license - Ensure LICENSE is notarized
+2025-06-12 15:06:15 - INFO - Running command: ./dist/aqua.js notarize ./LICENSE
+2025-06-12 15:06:15 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:06:15 - INFO - Command completed successfully in 0.32s
+2025-06-12 15:06:15 - INFO - ✓ setup_license: Created new notarization
+2025-06-12 15:06:15 - INFO - Setup for existing file tests: setup_readme - Ensure README is notarized
+2025-06-12 15:06:15 - INFO - Running command: ./dist/aqua.js notarize ./README.md
+2025-06-12 15:06:15 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:06:16 - INFO - Command completed successfully in 0.36s
+2025-06-12 15:06:16 - INFO - ✓ setup_readme: Created new notarization
+2025-06-12 15:06:16 - INFO - Running existing file test: existing_license_basic
+2025-06-12 15:06:16 - INFO - Expected behavior: Expected: Already notarized message
+2025-06-12 15:06:16 - INFO - Running command: ./dist/aqua.js notarize ./LICENSE
+2025-06-12 15:06:16 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:06:16 - ERROR - Command failed after 0.51s
+2025-06-12 15:06:16 - INFO - Result analysis: ✓ EXPECTED: Correctly shows 'already notarized' message
+2025-06-12 15:06:16 - INFO - Running existing file test: existing_readme_basic
+2025-06-12 15:06:16 - INFO - Expected behavior: Expected: Already notarized message
+2025-06-12 15:06:16 - INFO - Running command: ./dist/aqua.js notarize ./README.md
+2025-06-12 15:06:16 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:06:17 - ERROR - Command failed after 0.41s
+2025-06-12 15:06:17 - INFO - Result analysis: ✓ EXPECTED: Correctly shows 'already notarized' message
+2025-06-12 15:06:17 - INFO - Running existing file test: existing_license_content
+2025-06-12 15:06:17 - INFO - Expected behavior: Expected: Already notarized (content)
+2025-06-12 15:06:17 - INFO - Running command: ./dist/aqua.js notarize --content ./LICENSE
+2025-06-12 15:06:17 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:06:17 - ERROR - Command failed after 0.42s
+2025-06-12 15:06:17 - INFO - Result analysis: ✓ EXPECTED: Correctly shows 'already notarized' message
+2025-06-12 15:06:17 - INFO - Running existing file test: existing_license_scalar
+2025-06-12 15:06:17 - INFO - Expected behavior: Expected: Already notarized (scalar)
+2025-06-12 15:06:17 - INFO - Running command: ./dist/aqua.js notarize --scalar ./LICENSE
+2025-06-12 15:06:17 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:06:18 - ERROR - Command failed after 0.50s
+2025-06-12 15:06:18 - INFO - Result analysis: ✓ EXPECTED: Correctly shows 'already notarized' message
+2025-06-12 15:06:18 - INFO - Running existing file test: existing_license_sign
+2025-06-12 15:06:18 - INFO - Expected behavior: Expected: Sign existing notarization
+2025-06-12 15:06:18 - INFO - Running command: ./dist/aqua.js notarize --sign cli ./LICENSE
+2025-06-12 15:06:18 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:06:18 - INFO - Command completed successfully in 0.70s
+2025-06-12 15:06:18 - INFO - Result analysis: ✓ EXPECTED: Successfully signed existing notarization
+2025-06-12 15:06:18 - INFO - Running existing file test: existing_license_verify
+2025-06-12 15:06:18 - INFO - Expected behavior: Expected: Verify existing notarization
+2025-06-12 15:06:18 - INFO - Running command: ./dist/aqua.js verify LICENSE.aqua.json
+2025-06-12 15:06:18 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:06:19 - INFO - Command completed successfully in 0.58s
+2025-06-12 15:06:19 - INFO - Result analysis: ✓ EXPECTED: Successfully verified existing notarization
+2025-06-12 15:06:19 - INFO - Running existing file test: existing_readme_verify
+2025-06-12 15:06:19 - INFO - Expected behavior: Expected: Verify existing notarization
+2025-06-12 15:06:19 - INFO - Running command: ./dist/aqua.js verify README.md.aqua.json
+2025-06-12 15:06:19 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:06:19 - INFO - Command completed successfully in 0.35s
+2025-06-12 15:06:19 - INFO - Result analysis: ✓ EXPECTED: Successfully verified existing notarization
+2025-06-12 15:06:19 - INFO - === RUNNING FOCUSED README EXAMPLES ===
+2025-06-12 15:06:19 - INFO - Running README example: witness_eth_license
+2025-06-12 15:06:19 - INFO - Running command: ./dist/aqua.js notarize ./LICENSE --witness eth
+2025-06-12 15:06:19 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:11:19 - ERROR - Command timed out after 300s
+2025-06-12 15:11:19 - WARNING - README example witness_eth_license failed (this may be expected)
+2025-06-12 15:11:19 - DEBUG - Copied test_scalar_file.txt.aqua.json to output directory
+2025-06-12 15:11:19 - DEBUG - Copied README.md.aqua.json to output directory
+2025-06-12 15:11:19 - DEBUG - Copied LICENSE.aqua.json to output directory
+2025-06-12 15:11:19 - DEBUG - Copied test_modify_file.txt.aqua.json to output directory
+2025-06-12 15:11:19 - DEBUG - Copied test_fresh_file.txt.aqua.json to output directory
+2025-06-12 15:11:19 - DEBUG - Copied test_content_file.txt.aqua.json to output directory
+2025-06-12 15:11:19 - INFO - Running README example: form_genesis
+2025-06-12 15:11:19 - INFO - Running command: ./dist/aqua.js notarize example-form.json --form example-form.json
+2025-06-12 15:11:19 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:11:19 - INFO - Command completed successfully in 0.23s
+2025-06-12 15:11:19 - DEBUG - Copied test_scalar_file.txt.aqua.json to output directory
+2025-06-12 15:11:19 - DEBUG - Copied README.md.aqua.json to output directory
+2025-06-12 15:11:19 - DEBUG - Copied example-form.json.aqua.json to output directory
+2025-06-12 15:11:19 - DEBUG - Copied LICENSE.aqua.json to output directory
+2025-06-12 15:11:19 - DEBUG - Copied test_modify_file.txt.aqua.json to output directory
+2025-06-12 15:11:19 - DEBUG - Copied test_fresh_file.txt.aqua.json to output directory
+2025-06-12 15:11:19 - DEBUG - Copied test_content_file.txt.aqua.json to output directory
+2025-06-12 15:11:19 - INFO - Running README example: form_revision
+2025-06-12 15:11:19 - INFO - Running command: ./dist/aqua.js notarize LICENSE --form example-form.json
+2025-06-12 15:11:19 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:11:20 - INFO - Command completed successfully in 0.18s
+2025-06-12 15:11:20 - DEBUG - Copied test_scalar_file.txt.aqua.json to output directory
+2025-06-12 15:11:20 - DEBUG - Copied README.md.aqua.json to output directory
+2025-06-12 15:11:20 - DEBUG - Copied example-form.json.aqua.json to output directory
+2025-06-12 15:11:20 - DEBUG - Copied LICENSE.aqua.json to output directory
+2025-06-12 15:11:20 - DEBUG - Copied test_modify_file.txt.aqua.json to output directory
+2025-06-12 15:11:20 - DEBUG - Copied test_fresh_file.txt.aqua.json to output directory
+2025-06-12 15:11:20 - DEBUG - Copied test_content_file.txt.aqua.json to output directory
+2025-06-12 15:11:20 - INFO - Running verification examples...
+2025-06-12 15:11:20 - INFO - Running verification: verify_test_scalar_file.txt
+2025-06-12 15:11:20 - INFO - Running command: ./dist/aqua.js verify test_scalar_file.txt.aqua.json
+2025-06-12 15:11:20 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:11:20 - INFO - Command completed successfully in 0.18s
+2025-06-12 15:11:20 - INFO - Running verification: verify_verbose_test_scalar_file.txt
+2025-06-12 15:11:20 - INFO - Running command: ./dist/aqua.js verify test_scalar_file.txt.aqua.json -v
+2025-06-12 15:11:20 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:11:20 - INFO - Command completed successfully in 0.20s
+2025-06-12 15:11:20 - INFO - Running verification: verify_ignore_merkle_test_scalar_file.txt
+2025-06-12 15:11:20 - INFO - Running command: ./dist/aqua.js verify test_scalar_file.txt.aqua.json --ignore-merkle-proof
+2025-06-12 15:11:20 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:11:20 - INFO - Command completed successfully in 0.26s
+2025-06-12 15:11:20 - INFO - Running verification: verify_README.md
+2025-06-12 15:11:20 - INFO - Running command: ./dist/aqua.js verify README.md.aqua.json
+2025-06-12 15:11:20 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:11:20 - INFO - Command completed successfully in 0.22s
+2025-06-12 15:11:20 - INFO - Running verification: verify_verbose_README.md
+2025-06-12 15:11:20 - INFO - Running command: ./dist/aqua.js verify README.md.aqua.json -v
+2025-06-12 15:11:20 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:11:21 - INFO - Command completed successfully in 0.32s
+2025-06-12 15:11:21 - INFO - Running verification: verify_ignore_merkle_README.md
+2025-06-12 15:11:21 - INFO - Running command: ./dist/aqua.js verify README.md.aqua.json --ignore-merkle-proof
+2025-06-12 15:11:21 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:11:21 - INFO - Command completed successfully in 0.36s
+2025-06-12 15:11:21 - INFO - Running verification: verify_example-form.json
+2025-06-12 15:11:21 - INFO - Running command: ./dist/aqua.js verify example-form.json.aqua.json
+2025-06-12 15:11:21 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:11:21 - INFO - Command completed successfully in 0.24s
+2025-06-12 15:11:21 - INFO - Running verification: verify_verbose_example-form.json
+2025-06-12 15:11:21 - INFO - Running command: ./dist/aqua.js verify example-form.json.aqua.json -v
+2025-06-12 15:11:21 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:11:22 - INFO - Command completed successfully in 0.33s
+2025-06-12 15:11:22 - INFO - Running verification: verify_ignore_merkle_example-form.json
+2025-06-12 15:11:22 - INFO - Running command: ./dist/aqua.js verify example-form.json.aqua.json --ignore-merkle-proof
+2025-06-12 15:11:22 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:11:22 - INFO - Command completed successfully in 0.20s
+2025-06-12 15:11:22 - INFO - Running verification: verify_LICENSE
+2025-06-12 15:11:22 - INFO - Running command: ./dist/aqua.js verify LICENSE.aqua.json
+2025-06-12 15:11:22 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:11:22 - INFO - Command completed successfully in 0.26s
+2025-06-12 15:11:22 - INFO - Running verification: verify_verbose_LICENSE
+2025-06-12 15:11:22 - INFO - Running command: ./dist/aqua.js verify LICENSE.aqua.json -v
+2025-06-12 15:11:22 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:11:22 - INFO - Command completed successfully in 0.26s
+2025-06-12 15:11:22 - INFO - Running verification: verify_ignore_merkle_LICENSE
+2025-06-12 15:11:22 - INFO - Running command: ./dist/aqua.js verify LICENSE.aqua.json --ignore-merkle-proof
+2025-06-12 15:11:22 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:11:23 - INFO - Command completed successfully in 0.27s
+2025-06-12 15:11:23 - INFO - Running verification: verify_test_modify_file.txt
+2025-06-12 15:11:23 - INFO - Running command: ./dist/aqua.js verify test_modify_file.txt.aqua.json
+2025-06-12 15:11:23 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:11:23 - INFO - Command completed successfully in 0.19s
+2025-06-12 15:11:23 - INFO - Running verification: verify_verbose_test_modify_file.txt
+2025-06-12 15:11:23 - INFO - Running command: ./dist/aqua.js verify test_modify_file.txt.aqua.json -v
+2025-06-12 15:11:23 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:11:23 - INFO - Command completed successfully in 0.22s
+2025-06-12 15:11:23 - INFO - Running verification: verify_ignore_merkle_test_modify_file.txt
+2025-06-12 15:11:23 - INFO - Running command: ./dist/aqua.js verify test_modify_file.txt.aqua.json --ignore-merkle-proof
+2025-06-12 15:11:23 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:11:23 - INFO - Command completed successfully in 0.21s
+2025-06-12 15:11:23 - INFO - Running verification: verify_test_fresh_file.txt
+2025-06-12 15:11:23 - INFO - Running command: ./dist/aqua.js verify test_fresh_file.txt.aqua.json
+2025-06-12 15:11:23 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:11:24 - INFO - Command completed successfully in 0.19s
+2025-06-12 15:11:24 - INFO - Running verification: verify_verbose_test_fresh_file.txt
+2025-06-12 15:11:24 - INFO - Running command: ./dist/aqua.js verify test_fresh_file.txt.aqua.json -v
+2025-06-12 15:11:24 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:11:24 - INFO - Command completed successfully in 0.24s
+2025-06-12 15:11:24 - INFO - Running verification: verify_ignore_merkle_test_fresh_file.txt
+2025-06-12 15:11:24 - INFO - Running command: ./dist/aqua.js verify test_fresh_file.txt.aqua.json --ignore-merkle-proof
+2025-06-12 15:11:24 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:11:24 - INFO - Command completed successfully in 0.19s
+2025-06-12 15:11:24 - INFO - Running verification: verify_test_content_file.txt
+2025-06-12 15:11:24 - INFO - Running command: ./dist/aqua.js verify test_content_file.txt.aqua.json
+2025-06-12 15:11:24 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:11:24 - INFO - Command completed successfully in 0.22s
+2025-06-12 15:11:24 - INFO - Running verification: verify_verbose_test_content_file.txt
+2025-06-12 15:11:24 - INFO - Running command: ./dist/aqua.js verify test_content_file.txt.aqua.json -v
+2025-06-12 15:11:24 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:11:24 - INFO - Command completed successfully in 0.19s
+2025-06-12 15:11:24 - INFO - Running verification: verify_ignore_merkle_test_content_file.txt
+2025-06-12 15:11:24 - INFO - Running command: ./dist/aqua.js verify test_content_file.txt.aqua.json --ignore-merkle-proof
+2025-06-12 15:11:24 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:11:25 - INFO - Command completed successfully in 0.26s
+2025-06-12 15:11:25 - INFO - README examples completed. Success rate: 23/24
+2025-06-12 15:11:25 - INFO - === RUNNING TEST SUITE ===
+2025-06-12 15:11:25 - INFO - Running complete test suite with 'make test'
+2025-06-12 15:11:25 - INFO - Running command: make test
+2025-06-12 15:11:25 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli
+2025-06-12 15:11:50 - ERROR - Command failed after 25.54s
+2025-06-12 15:11:50 - ERROR - Error: make: *** [tests/test-witness.sh] Error 1
+
+2025-06-12 15:11:50 - INFO - Running individual test: test-forms
+2025-06-12 15:11:50 - INFO - Running command: ./test-forms.sh
+2025-06-12 15:11:50 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli/tests
+2025-06-12 15:11:52 - INFO - Command completed successfully in 1.98s
+2025-06-12 15:11:52 - INFO - Running individual test: test-content-revision
+2025-06-12 15:11:52 - INFO - Running command: ./test-content-revision.sh
+2025-06-12 15:11:52 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli/tests
+2025-06-12 15:11:53 - INFO - Command completed successfully in 0.46s
+2025-06-12 15:11:53 - INFO - Running individual test: test-linking
+2025-06-12 15:11:53 - INFO - Running command: ./test-linking.sh
+2025-06-12 15:11:53 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli/tests
+2025-06-12 15:11:55 - INFO - Command completed successfully in 2.07s
+2025-06-12 15:11:55 - INFO - Running individual test: test-file-revisions
+2025-06-12 15:11:55 - INFO - Running command: ./test-file-revisions.sh
+2025-06-12 15:11:55 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli/tests
+2025-06-12 15:11:56 - INFO - Command completed successfully in 1.01s
+2025-06-12 15:11:56 - INFO - Running individual test: test-signing
+2025-06-12 15:11:56 - INFO - Running command: ./test-signing.sh
+2025-06-12 15:11:56 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli/tests
+2025-06-12 15:11:58 - INFO - Command completed successfully in 1.91s
+2025-06-12 15:11:58 - INFO - Running individual test: test-witness
+2025-06-12 15:11:58 - INFO - Running command: ./test-witness.sh
+2025-06-12 15:11:58 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli/tests
+2025-06-12 15:12:14 - ERROR - Command failed after 16.36s
+2025-06-12 15:12:14 - INFO - Running individual test: test-verify
+2025-06-12 15:12:14 - INFO - Running command: ./test-verify.sh
+2025-06-12 15:12:14 - DEBUG - Working directory: /Users/tetra/Documents/GitHub/aqua-js-cli/tests
+2025-06-12 15:12:14 - INFO - Command completed successfully in 0.46s
+2025-06-12 15:12:14 - INFO - Test suite completed. Success: False
+2025-06-12 15:12:14 - INFO - === GENERATING REPORTS ===
+2025-06-12 15:12:14 - INFO - Reports generated successfully
+2025-06-12 15:12:14 - INFO - === CLEANUP ===
+2025-06-12 15:12:14 - DEBUG - Copied test_scalar_file.txt.aqua.json to output directory
+2025-06-12 15:12:14 - DEBUG - Copied README.md.aqua.json to output directory
+2025-06-12 15:12:14 - DEBUG - Copied example-form.json.aqua.json to output directory
+2025-06-12 15:12:14 - DEBUG - Copied LICENSE.aqua.json to output directory
+2025-06-12 15:12:14 - DEBUG - Copied test_modify_file.txt.aqua.json to output directory
+2025-06-12 15:12:14 - DEBUG - Copied test_fresh_file.txt.aqua.json to output directory
+2025-06-12 15:12:14 - DEBUG - Copied test_content_file.txt.aqua.json to output directory
+2025-06-12 15:12:14 - INFO - Created archive: /Users/tetra/Documents/GitHub/aqua-js-cli/output/aqua_test_run_20250612_150605.tar.gz
+2025-06-12 15:12:14 - INFO - Removed temporary test file: test_fresh_file.txt
+2025-06-12 15:12:14 - INFO - Removed temporary test file: test_modify_file.txt
+2025-06-12 15:12:14 - INFO - Removed temporary test file: test_content_file.txt
+2025-06-12 15:12:14 - INFO - Removed temporary test file: test_scalar_file.txt
+2025-06-12 15:12:14 - INFO - Cleanup completed
+2025-06-12 15:12:14 - INFO - Test run completed in 369.76s
+2025-06-12 15:12:14 - INFO - Critical components success: False
+2025-06-12 15:12:14 - INFO - Overall success: False
+2025-06-12 15:12:14 - INFO - Results saved to: /Users/tetra/Documents/GitHub/aqua-js-cli/output/run_20250612_150605
+2025-06-12 15:12:14 - INFO - Phase Results Summary:
+2025-06-12 15:12:14 - INFO -   ✓ Environment Setup: SUCCESS
+2025-06-12 15:12:14 - INFO -   ✓ State Management: SUCCESS
+2025-06-12 15:12:14 - INFO -   ✓ Existing File Scenarios: SUCCESS
+2025-06-12 15:12:14 - INFO -   ✓ README Examples: PARTIAL
+2025-06-12 15:12:14 - INFO -   ✓ Test Suite: FAILED

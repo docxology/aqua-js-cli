@@ -5,7 +5,7 @@ test_description='Test file verification functionality'
 notarize="repo/dist/aqua.js notarize"
 verify="repo/dist/aqua.js verify"
 
-. ./tests/sharness/sharness.sh
+. ./sharness/sharness.sh
 
 
 test_expect_success 'Setup test environment' '

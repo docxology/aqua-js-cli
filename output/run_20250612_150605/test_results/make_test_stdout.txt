@@ -1,0 +1,606 @@
+cd tests && ./test-content-revision.sh  -v
+Current Path: /Users/tetra/Documents/GitHub/aqua-js-cli/tests
+expecting success: 
+	ln -s $(git rev-parse --show-toplevel) ./repo
+	cp repo/README.md README.md
+
+ok 1 - Setup test environment
+
+expecting success: 
+    $notarize README.md --content &&
+    test -f README.md.aqua.json
+
+- Writing new file revision 0x0a9006626d9d46ac277c80765b2e2f223c6298b05451db516dbdd1e83cf2e7e3 to README.md.aqua.json
+ok 2 - Create initial AQUA file for README with content parameter
+
+expecting success: 
+   test -n "$(cat README.md.aqua.json | grep \"content\")"
+
+ok 3 - Check README.md.aqua.json contains a content
+
+expecting success: 
+    cat README.md.aqua.json && grep \"content\" README.md.aqua.json
+
+{
+  "revisions": {
+    "0x0a9006626d9d46ac277c80765b2e2f223c6298b05451db516dbdd1e83cf2e7e3": {
+      "content": "# Aqua JS CLI\n\nJS Client scripts for signing, witnessing and verifying revisions\n\n## Requirements\nMinimum requirement: Node.js 14.x+  \nBut it is recommended to run the latest Node.js.  \nInstall node [here](https://nodejs.org/en/download)\n\n## Getting Started \n1. `npm install`\n2. `npm run build`\n3. Use `aqua.js` in dist file, follow usage commands in the section below\n4. You can also build a standalone binary using `build:bin`. Substitute accordingly in step 2 above; the binaries will be in the binaries folder\n\n## Usage\n\n### Credentials\n\nBy default, aqua.js will look for a credentials file at `~/.aqua/credentials.json`. If it doesn't exist, it will create one with the default values.\n\nSo you can run `./dist/aqua.js notarize README.md` without any arguments.\n\nIf you want to create a custom credentials file, you can use the `--cred` option:\n\n```bash\n./dist/aqua.js notarize README.md --cred ./NEW/PATH/TO/credentials.json\n```\n\n### 1. Notarizing / Signing / Witnessing a File\n\nTo notarize a file, use the following command:\n\n```bash \n./dist/aqua.js notarize <FILE_PATH>\n```\n\nExample:\n\n```bash \n./dist/aqua.js notarize ./LICENSE\n```\n\nTo sign a file, use the following command.  \nYou can only sign aqua.json files. Ensure to notarize using the command above.\n\n```bash\n./dist/aqua.js notarize [--sign cli | --sign metamask | --sign did] <FILE_PATH>\n```\n\nExample:\n\n```bash\n./dist/aqua.js notarize --sign cli ./LICENSE\n```\n\nTo witness a file, use the following command.  \nYou can only witness aqua.json files. Ensure to notarize using the command above.\n\n```bash\n./dist/aqua.js notarize [--witness eth | --witness nostr | --witness tsa] <FILE_PATH>\n```\n\nExample:\n\n```bash\n./dist/aqua.js notarize ./LICENSE --witness eth\n```\n\nTo witness multiple aqua chains:\n\nExample:\n```bash\n./dist/aqua.js notarize LICENSE,README.md --witness eth --vtree --network sepolia\n```\n\nTo witness multiple files with specific revision:\n\nExample:\n```bash\n./dist/aqua.js notarize LICENSE@0x_specific_revision_,README.md@0x_specific_revision_ --witness eth --type cli --vtree\n```\n\n### 2. Aqua Chain Verification\n\nTo verify an aqua chain, use the following command:\n\n```bash\n./dist/aqua.js verify <AQUA_CHAIN_FILE_PATH>\n```\n\nExample:\n\n```bash\n./dist/aqua.js verify LICENSE.aqua.json\n```\n\n#### 2.1. Verification Options\n\n##### 2.1.1. `-v` - Outputting Verbose Results\n\nUse the `-v` flag for result verboseness:\n\n```bash\n./dist/aqua.js verify LICENSE.aqua.json -v\n```\n\n##### 2.1.2. `--ignore-merkle-proof` - Ignore Verifying the Witness Merkle Proof of Each Revision\n\nUse the `--ignore-merkle-proof` flag to ignore verifying merkle proof of each revision. Verification is faster:\n\n```bash\n./dist/aqua.js verify LICENSE.aqua.json --ignore-merkle-proof\n```\n\n### 3. Deleting a Revision from Aqua Chain\n\nThis will delete the last revision from an aqua chain:\n\n```bash\n./dist/aqua.js notarize --remove <FILE_PATH>\n```\n\nExample:\n\n```bash\n./dist/aqua.js notarize --remove ./LICENSE\n```\n\n### 4. Linking an Aqua Chain to Another\n\nTo link an Aqua chain to another, use the `--link` option as follows:\n\n```bash\n./dist/aqua.js notarize <FILE_PATH> --link <FILE_PATH.aqua.json>\n```\n\nExample:\n\n```bash\n./dist/aqua.js notarize --link ./LICENSE ./README.md.aqua.json\n```\n\nThis will link `README.md.aqua.json` to the `LICENSE` file and it will be written into the `LICENSE.aqua.json` file.\n\n### 5. Generating a Content Revision\n\nTo generate a `content` revision, run the following command:\n\n```bash\n./dist/aqua.js notarize --content ./LICENSE\n```\n\n### 6. Generating a Scalar Revision\n\nTo generate a `scalar` revision, run the following command:\n\n```bash\n./dist/aqua.js notarize --scalar ./LICENSE\n```\n\n### 7. Forms \n\nTo create a genesis form revision:\n```bash\n./notarize.js example-form.json --form example-form.json\n```\n\nPlease note: for genesis, the filename should be the same as the form name.\n\nTo create a form revision:\n```bash\n./notarize.js LICENSE --form example-form.json\n```\n\n### 8. Update Aqua Forms \n\n* To delete a form entry:\n  ```bash\n  ./form_updater.js example-form.json.aqua.json@abcd --delete age\n  ```\n \n* To update a form entry (i.e., undelete it):\n  ```bash\n  ./form_updater.js example-form.json.aqua.json --update forms_age 200\n  ```\n\n**Features:**\n\n1. **File Validation**: Ensures the input file is a .aqua.json file and exists\n2. **Form Key Detection**:\n   - Can find exact matches (e.g., forms-name)\n   - Can find partial matches (e.g., name will match forms-name)\n   - Handles deleted fields (e.g., forms-name.deleted)\n3. **Operations**:\n   - `--delete`: Marks a form field as deleted by appending .deleted\n   - `--update`: Updates or restores a form field, removing the .deleted suffix if present\n4. **Error Handling**: Provides clear error messages for invalid inputs\n5. **Non-destructive**: Preserves the original structure while making changes\n\n## How to Run Tests\n\n- Ensure to install sharness in your local system. The sharness path is set to `~/share/sharness/sharness.sh`, then copy the sharness directory to tests. Check out [sharness](https://github.com/felipec/sharness) for more instructions\n- Run `make test`\n- The output will be in test > trash *(the last part is dynamic based on the test)*\n- **Hint**: Ensure your `tests/test-*.sh` files are executable: `chmod +x tests/test-*`",
+      "file_hash": "632a14499fdf0a08132100f4d8836d809010684171544cb0db38d60d5913ee8b",
+      "file_nonce": "059b16a768c3998230628eb54114a6ebd96e3b1f485d4d0342321183343090d2",
+      "local_timestamp": "20250612221125",
+      "previous_verification_hash": "",
+      "revision_type": "file",
+      "version": "https://aqua-protocol.org/docs/v3/schema_2 | SHA256 | Method: scalar"
+    }
+  },
+  "file_index": {
+    "0x0a9006626d9d46ac277c80765b2e2f223c6298b05451db516dbdd1e83cf2e7e3": "README.md"
+  },
+  "tree": {
+    "children": [],
+    "hash": "0x0a9006626d9d46ac277c80765b2e2f223c6298b05451db516dbdd1e83cf2e7e3"
+  },
+  "treeMapping": {
+    "paths": {
+      "0x0a9006626d9d46ac277c80765b2e2f223c6298b05451db516dbdd1e83cf2e7e3": [
+        "0x0a9006626d9d46ac277c80765b2e2f223c6298b05451db516dbdd1e83cf2e7e3"
+      ]
+    },
+    "latestHash": "0x0a9006626d9d46ac277c80765b2e2f223c6298b05451db516dbdd1e83cf2e7e3"
+  }
+}      "content": "# Aqua JS CLI\n\nJS Client scripts for signing, witnessing and verifying revisions\n\n## Requirements\nMinimum requirement: Node.js 14.x+  \nBut it is recommended to run the latest Node.js.  \nInstall node [here](https://nodejs.org/en/download)\n\n## Getting Started \n1. `npm install`\n2. `npm run build`\n3. Use `aqua.js` in dist file, follow usage commands in the section below\n4. You can also build a standalone binary using `build:bin`. Substitute accordingly in step 2 above; the binaries will be in the binaries folder\n\n## Usage\n\n### Credentials\n\nBy default, aqua.js will look for a credentials file at `~/.aqua/credentials.json`. If it doesn't exist, it will create one with the default values.\n\nSo you can run `./dist/aqua.js notarize README.md` without any arguments.\n\nIf you want to create a custom credentials file, you can use the `--cred` option:\n\n```bash\n./dist/aqua.js notarize README.md --cred ./NEW/PATH/TO/credentials.json\n```\n\n### 1. Notarizing / Signing / Witnessing a File\n\nTo notarize a file, use the following command:\n\n```bash \n./dist/aqua.js notarize <FILE_PATH>\n```\n\nExample:\n\n```bash \n./dist/aqua.js notarize ./LICENSE\n```\n\nTo sign a file, use the following command.  \nYou can only sign aqua.json files. Ensure to notarize using the command above.\n\n```bash\n./dist/aqua.js notarize [--sign cli | --sign metamask | --sign did] <FILE_PATH>\n```\n\nExample:\n\n```bash\n./dist/aqua.js notarize --sign cli ./LICENSE\n```\n\nTo witness a file, use the following command.  \nYou can only witness aqua.json files. Ensure to notarize using the command above.\n\n```bash\n./dist/aqua.js notarize [--witness eth | --witness nostr | --witness tsa] <FILE_PATH>\n```\n\nExample:\n\n```bash\n./dist/aqua.js notarize ./LICENSE --witness eth\n```\n\nTo witness multiple aqua chains:\n\nExample:\n```bash\n./dist/aqua.js notarize LICENSE,README.md --witness eth --vtree --network sepolia\n```\n\nTo witness multiple files with specific revision:\n\nExample:\n```bash\n./dist/aqua.js notarize LICENSE@0x_specific_revision_,README.md@0x_specific_revision_ --witness eth --type cli --vtree\n```\n\n### 2. Aqua Chain Verification\n\nTo verify an aqua chain, use the following command:\n\n```bash\n./dist/aqua.js verify <AQUA_CHAIN_FILE_PATH>\n```\n\nExample:\n\n```bash\n./dist/aqua.js verify LICENSE.aqua.json\n```\n\n#### 2.1. Verification Options\n\n##### 2.1.1. `-v` - Outputting Verbose Results\n\nUse the `-v` flag for result verboseness:\n\n```bash\n./dist/aqua.js verify LICENSE.aqua.json -v\n```\n\n##### 2.1.2. `--ignore-merkle-proof` - Ignore Verifying the Witness Merkle Proof of Each Revision\n\nUse the `--ignore-merkle-proof` flag to ignore verifying merkle proof of each revision. Verification is faster:\n\n```bash\n./dist/aqua.js verify LICENSE.aqua.json --ignore-merkle-proof\n```\n\n### 3. Deleting a Revision from Aqua Chain\n\nThis will delete the last revision from an aqua chain:\n\n```bash\n./dist/aqua.js notarize --remove <FILE_PATH>\n```\n\nExample:\n\n```bash\n./dist/aqua.js notarize --remove ./LICENSE\n```\n\n### 4. Linking an Aqua Chain to Another\n\nTo link an Aqua chain to another, use the `--link` option as follows:\n\n```bash\n./dist/aqua.js notarize <FILE_PATH> --link <FILE_PATH.aqua.json>\n```\n\nExample:\n\n```bash\n./dist/aqua.js notarize --link ./LICENSE ./README.md.aqua.json\n```\n\nThis will link `README.md.aqua.json` to the `LICENSE` file and it will be written into the `LICENSE.aqua.json` file.\n\n### 5. Generating a Content Revision\n\nTo generate a `content` revision, run the following command:\n\n```bash\n./dist/aqua.js notarize --content ./LICENSE\n```\n\n### 6. Generating a Scalar Revision\n\nTo generate a `scalar` revision, run the following command:\n\n```bash\n./dist/aqua.js notarize --scalar ./LICENSE\n```\n\n### 7. Forms \n\nTo create a genesis form revision:\n```bash\n./notarize.js example-form.json --form example-form.json\n```\n\nPlease note: for genesis, the filename should be the same as the form name.\n\nTo create a form revision:\n```bash\n./notarize.js LICENSE --form example-form.json\n```\n\n### 8. Update Aqua Forms \n\n* To delete a form entry:\n  ```bash\n  ./form_updater.js example-form.json.aqua.json@abcd --delete age\n  ```\n \n* To update a form entry (i.e., undelete it):\n  ```bash\n  ./form_updater.js example-form.json.aqua.json --update forms_age 200\n  ```\n\n**Features:**\n\n1. **File Validation**: Ensures the input file is a .aqua.json file and exists\n2. **Form Key Detection**:\n   - Can find exact matches (e.g., forms-name)\n   - Can find partial matches (e.g., name will match forms-name)\n   - Handles deleted fields (e.g., forms-name.deleted)\n3. **Operations**:\n   - `--delete`: Marks a form field as deleted by appending .deleted\n   - `--update`: Updates or restores a form field, removing the .deleted suffix if present\n4. **Error Handling**: Provides clear error messages for invalid inputs\n5. **Non-destructive**: Preserves the original structure while making changes\n\n## How to Run Tests\n\n- Ensure to install sharness in your local system. The sharness path is set to `~/share/sharness/sharness.sh`, then copy the sharness directory to tests. Check out [sharness](https://github.com/felipec/sharness) for more instructions\n- Run `make test`\n- The output will be in test > trash *(the last part is dynamic based on the test)*\n- **Hint**: Ensure your `tests/test-*.sh` files are executable: `chmod +x tests/test-*`",
+ok 4 - Check README.md.aqua.json contains a content
+
+# passed all 4 test(s)
+1..4
+cd tests && ./test-file-revisions.sh  -v
+Current Path: /Users/tetra/Documents/GitHub/aqua-js-cli/tests
+expecting success: 
+	ln -s $(git rev-parse --show-toplevel) ./repo
+	cp repo/README.md README.md
+
+ok 1 - Setup test environment
+
+expecting success: 
+    cp README.md README2.md &&
+    test -f README2.md
+
+ok 2 - Copy README.md to README2.md
+
+expecting success: 
+    $notarize README.md &&
+    test -f README.md.aqua.json
+
+- Writing new file revision 0xb4837429b8317225b2a75e76742ccf972a45f103c6099cee8e3ae97081e3b0bd to README.md.aqua.json
+ok 3 - Create initial AQUA file for README
+
+expecting success: 
+    sed -i "" "1s/^.//" README.md &&
+    test -f README.md &&
+    # Verify that the file was actually modified
+    ! cmp README.md README2.md >/dev/null 2>&1
+
+ok 4 - Modify README.md content by removing first character
+
+expecting success: 
+    $notarize README.md &&
+    test -f README.md.aqua.json
+
+ok 5 - Notarize modified README.md
+
+expecting success: 
+    $verify README.md
+
+file name README.md.aqua.json
+-> reading pure file README.md
+Checking aqua file: README.md.aqua.json
+-> reading aqua file README.md.aqua.json
+	 ❌ Error verifying revision type:file with hash 0xb4837429b8317225b2a75e76742ccf972a45f103c6099cee8e3ae97081e3b0bd - 
+ isSuccess false - isScalarSuccess true 
+
+ok 6 - Verify README.md after all modifications
+
+expecting success: 
+    rm -f README2.md &&
+    rm -f README.md.aqua.json &&
+	rm -f README.md
+
+ok 7 - Cleanup test files
+
+# passed all 7 test(s)
+1..7
+cd tests && ./test-forms.sh  -v
+expecting success: 
+    mkdir -p ${project_root}/tests/form_testdata 
+
+ok 1 - Setup test environment
+
+expecting success: 
+    test -f ${example_form} &&
+    test -f ${example_form_attestation}
+
+ok 2 - Verify test files exist
+
+expecting success: 
+    ${notarize} ${example_form} --form ${example_form} &&
+    test -f ${example_form}.aqua.json
+
+- Writing new form revision 0x2f85123592dbe81bd30e89d19712e7cd64eb799283577432295f69dd1aa16d60 to /Users/tetra/Documents/GitHub/aqua-js-cli/tests/form_testdata/example-form.json.aqua.json
+ok 3 - Notarize initial form
+
+expecting success: 
+    ${notarize} ${example_form} --form ${example_form_attestation}
+
+✅ Form  revision created succesfully
+ok 4 - Notarize attestation form
+
+expecting success: 
+    ${verify} ${example_form}.aqua.json
+
+file name /Users/tetra/Documents/GitHub/aqua-js-cli/tests/form_testdata/example-form.json.aqua.json
+-> reading pure file /Users/tetra/Documents/GitHub/aqua-js-cli/tests/form_testdata/example-form.json
+Checking aqua file: /Users/tetra/Documents/GitHub/aqua-js-cli/tests/form_testdata/example-form.json.aqua.json
+-> reading aqua file /Users/tetra/Documents/GitHub/aqua-js-cli/tests/form_testdata/example-form.json.aqua.json
+-> reading pure file /Users/tetra/Documents/GitHub/aqua-js-cli/tests/form_testdata/example-form-attestation.json
+Checking aqua file: /Users/tetra/Documents/GitHub/aqua-js-cli/tests/form_testdata/example-form-attestation.json.aqua.json
+✅ All revisions verified successfully
+
+ok 5 - Verify initial form
+
+expecting success: 
+    ${form_updater} ${example_form}.aqua.json --delete date_of_birth
+
+
+Deleting form key
+
+Using latest revision
+Successfully deleted form key 'date_of_birth' from /Users/tetra/Documents/GitHub/aqua-js-cli/tests/form_testdata/example-form.json.aqua.json
+ok 6 - Delete date_of_birth field
+
+expecting success: 
+    ${verify} ${example_form}.aqua.json -v
+
+file name /Users/tetra/Documents/GitHub/aqua-js-cli/tests/form_testdata/example-form.json.aqua.json
+-> reading pure file /Users/tetra/Documents/GitHub/aqua-js-cli/tests/form_testdata/example-form.json
+Checking aqua file: /Users/tetra/Documents/GitHub/aqua-js-cli/tests/form_testdata/example-form.json.aqua.json
+-> reading aqua file /Users/tetra/Documents/GitHub/aqua-js-cli/tests/form_testdata/example-form.json.aqua.json
+-> reading pure file /Users/tetra/Documents/GitHub/aqua-js-cli/tests/form_testdata/example-form-attestation.json
+Checking aqua file: /Users/tetra/Documents/GitHub/aqua-js-cli/tests/form_testdata/example-form-attestation.json.aqua.json
+ ➡️  1.Verifying Revision: 0x2f85123592dbe81bd30e89d19712e7cd64eb799283577432295f69dd1aa16d60
+	 📝 Type: Form.
+		 ✅ The following fields were verified:
+		 ✅ ✅ forms_date_of_birth: 1995-10-15
+
+		 ✅ ✅ forms_email: john.doe@example.com
+
+		 ✅ ✅ forms_name: John
+
+		 ✅ ✅ forms_surname: Doe
+
+		 ✅ ✅ forms_type: identity_claim
+
+		 ✅ ✅ forms_wallet_address: 0x1234567890abcdef
+
+	 ✅ 🌿 Tree  revision verified
+  
+
+ ➡️  2.Verifying Revision: 0x83b25fee8ebc7369fc83d8851f6961141dae9b929dbb0eeea74c5cbd6c82472e
+	 📝 Type: Form.
+		 🚨 Warning: The following fields cannot be verified:
+ 🚨 1. forms_date_of_birth
+
+		 ✅ The following fields were verified:
+		 ✅ ✅ forms_context: I hereby attest that the above information is true and correct to the best of my knowledge.
+
+		 ✅ ✅ forms_email: john.doe@example.com
+
+		 ✅ ✅ forms_name: John
+
+		 ✅ ✅ forms_surname: Doe
+
+		 ✅ ✅ forms_type: identity_attestation
+
+		 ✅ ✅ forms_wallet_address: 0x1234567890abcdef
+
+	 ✅ 🌿 Tree  revision verified
+  
+
+ ✅ All revisions verified successfully
+
+ok 7 - Verify after deletion
+
+expecting success: 
+    ${form_updater} ${example_form}.aqua.json --update date_of_birth "1995-10-15"
+
+
+Updating form key
+
+Using latest revision
+Successfully restored and updated form key 'forms_date_of_birth' in /Users/tetra/Documents/GitHub/aqua-js-cli/tests/form_testdata/example-form.json.aqua.json
+ok 8 - Update date_of_birth field
+
+expecting success: 
+    ${verify} ${example_form} -v
+file name /Users/tetra/Documents/GitHub/aqua-js-cli/tests/form_testdata/example-form.json.aqua.json
+-> reading pure file /Users/tetra/Documents/GitHub/aqua-js-cli/tests/form_testdata/example-form.json
+Checking aqua file: /Users/tetra/Documents/GitHub/aqua-js-cli/tests/form_testdata/example-form.json.aqua.json
+-> reading aqua file /Users/tetra/Documents/GitHub/aqua-js-cli/tests/form_testdata/example-form.json.aqua.json
+-> reading pure file /Users/tetra/Documents/GitHub/aqua-js-cli/tests/form_testdata/example-form-attestation.json
+Checking aqua file: /Users/tetra/Documents/GitHub/aqua-js-cli/tests/form_testdata/example-form-attestation.json.aqua.json
+ ➡️  1.Verifying Revision: 0x2f85123592dbe81bd30e89d19712e7cd64eb799283577432295f69dd1aa16d60
+	 📝 Type: Form.
+		 ✅ The following fields were verified:
+		 ✅ ✅ forms_date_of_birth: 1995-10-15
+
+		 ✅ ✅ forms_email: john.doe@example.com
+
+		 ✅ ✅ forms_name: John
+
+		 ✅ ✅ forms_surname: Doe
+
+		 ✅ ✅ forms_type: identity_claim
+
+		 ✅ ✅ forms_wallet_address: 0x1234567890abcdef
+
+	 ✅ 🌿 Tree  revision verified
+  
+
+ ➡️  2.Verifying Revision: 0x83b25fee8ebc7369fc83d8851f6961141dae9b929dbb0eeea74c5cbd6c82472e
+	 📝 Type: Form.
+		 ✅ The following fields were verified:
+		 ✅ ✅ forms_context: I hereby attest that the above information is true and correct to the best of my knowledge.
+
+		 ✅ ✅ forms_date_of_birth: 1995-10-15
+
+		 ✅ ✅ forms_email: john.doe@example.com
+
+		 ✅ ✅ forms_name: John
+
+		 ✅ ✅ forms_surname: Doe
+
+		 ✅ ✅ forms_type: identity_attestation
+
+		 ✅ ✅ forms_wallet_address: 0x1234567890abcdef
+
+	 ✅ 🌿 Tree  revision verified
+  
+
+ ✅ All revisions verified successfully
+
+ok 9 - Final verification
+
+expecting success: 
+    rm -f ${example_form}.aqua.json
+
+ok 10 - Cleanup test files
+
+# passed all 10 test(s)
+1..10
+cd tests && ./test-linking.sh  -v
+expecting success: 
+    ln -s $(git rev-parse --show-toplevel) ./repo &&
+    cp repo/README.md README.md &&
+    cp repo/LICENSE LICENSE &&
+    cp repo/notarize.ts notarize.ts
+
+ok 1 - Setup test environment
+
+expecting success: 
+    $notarize README.md &&
+    test -f README.md.aqua.json
+
+- Writing new file revision 0xeeb7d7f9a073adfa00dfef49558a34c08ec03f0f096f4b75a27e4e25a461d22b to README.md.aqua.json
+ok 2 - Create AQUA file for README.md
+
+expecting success: 
+    $notarize LICENSE &&
+    test -f LICENSE.aqua.json
+
+- Writing new file revision 0xc2f0273fca531500b73fce54eb47d42b204f1af1d1989677d9017f93bc8a3abc to LICENSE.aqua.json
+ok 3 - Create AQUA file for LICENSE
+
+expecting success: 
+    $notarize notarize.ts &&
+    test -f notarize.ts.aqua.json
+
+- Writing new file revision 0xc2348d518414aa7d99a9ff3be70b77d400ba636631f787a279bb54323030c6e6 to notarize.ts.aqua.json
+ok 4 - Create AQUA file for notarize.ts
+
+expecting success: 
+    $notarize --link LICENSE,notarize.ts README.md &&
+    test -f README.md.aqua.json
+
+➡️ Linking an AquaTree to multiple AquaTrees
+🔗 Linking successful
+ok 5 - Create link between files
+
+expecting success: 
+    $verify README.md
+
+file name README.md.aqua.json
+-> reading pure file README.md
+Checking aqua file: README.md.aqua.json
+-> reading aqua file README.md.aqua.json
+-> reading pure file LICENSE
+Checking aqua file: LICENSE.aqua.json
+-> reading aqua file LICENSE.aqua.json
+-> reading pure file notarize.ts
+Checking aqua file: notarize.ts.aqua.json
+-> reading aqua file notarize.ts.aqua.json
+✅ All revisions verified successfully
+
+ok 6 - Verify linked README.md
+
+expecting success: 
+    rm -f README.md.aqua.json &&
+    rm -f LICENSE.aqua.json &&
+    rm -f notarize.ts.aqua.json &&
+    rm -f README.md &&
+    rm -f LICENSE &&
+    rm -f notarize.ts
+
+ok 7 - Cleanup test files
+
+# passed all 7 test(s)
+1..7
+cd tests && ./test-signing.sh  -v
+expecting success: 
+    ln -s $(git rev-parse --show-toplevel) ./repo &&
+    cp repo/README.md README.md &&
+    cp repo/LICENSE LICENSE &&
+    cp repo/notarize.ts notarize.ts
+
+ok 1 - Setup test environment
+
+expecting success: 
+    test -f README.md
+
+ok 2 - Check README.md
+
+expecting success: 
+    $notarize README.md &&
+    test -f README.md.aqua.json
+
+- Writing new file revision 0xb93ad81c10c291d8c86201521424b5aaf8b0c7bd48a32a6432e6d9aaefbffb5d to README.md.aqua.json
+ok 3 - Create AQUA file for README.md
+
+expecting success: 
+    $notarize README.md  --sign cli &&
+    test -f README.md.aqua.json
+
+✅ AquaTree signed succesfully
+ok 4 - Sign README.md
+
+expecting success: 
+    test -f notarize.ts
+
+ok 5 - Check notarize.ts
+
+expecting success: 
+    $notarize notarize.ts &&
+    test -f notarize.ts.aqua.json
+
+- Writing new file revision 0xe1997af051fa3e4e8407af135328e91f51d2906c40eb5747906c916d68712b25 to notarize.ts.aqua.json
+ok 6 - Create AQUA file for notarize.ts
+
+expecting success: 
+    $notarize notarize.ts  --sign did &&
+    test -f notarize.ts.aqua.json
+
+✅ AquaTree signed succesfully
+ok 7 - Witness notarize.ts.aqua.json
+
+expecting success: 
+    rm -f README.md.aqua.json &&
+    rm -f LICENSE.aqua.json &&
+    rm -f notarize.ts.aqua.json &&
+    rm -f README.md &&
+    rm -f LICENSE &&
+    rm -f notarize.ts &&
+    rm -f actual_output
+
+ok 8 - Cleanup test files
+
+# passed all 8 test(s)
+1..8
+cd tests && ./test-verify.sh  -v
+expecting success: 
+    ln -s $(git rev-parse --show-toplevel) ./repo &&
+    cp repo/README.md README.md &&
+    cp repo/LICENSE LICENSE &&
+    cp repo/notarize.ts notarize.ts
+
+ok 1 - Setup test environment
+
+expecting success: 
+    test -f README.md
+
+ok 2 - Check README.md
+
+expecting success: 
+    $notarize README.md &&
+    test -f README.md.aqua.json
+
+- Writing new file revision 0x076a2153d25a1059f42e47d52da732f5f5c1f6520a96a736249d6c27e5259c50 to README.md.aqua.json
+ok 3 - Create AQUA file for README.md
+
+expecting success: 
+    $verify README.md > actual_output &&
+    if tail -n 2 actual_output | grep -q "successfully"; then
+        echo "Last or second-to-last line contains 'successfully'";
+    else
+        echo "Last or second-to-last line does NOT contain 'successfully'" && false;
+    fi
+
+Last or second-to-last line contains 'successfully'
+ok 4 - Verify the output of verify.js
+
+expecting success: 
+    rm -f README.md.aqua.json &&
+    rm -f LICENSE.aqua.json &&
+    rm -f notarize.ts.aqua.json &&
+    rm -f README.md &&
+    rm -f LICENSE &&
+    rm -f notarize.ts &&
+    rm -f actual_output
+
+ok 5 - Cleanup test files
+
+# passed all 5 test(s)
+1..5
+cd tests && ./test-witness.sh  -v
+expecting success: 
+    ln -s $(git rev-parse --show-toplevel) ./repo &&
+    cp repo/README.md README.md &&
+    cp repo/LICENSE LICENSE &&
+    cp repo/notarize.ts notarize.ts
+    cp repo/formatter.ts formatter.ts
+    cp repo/index.ts index.ts
+
+ok 1 - Setup test environment
+
+expecting success: 
+    test -f README.md
+
+ok 2 - Check README.md
+
+expecting success: 
+    $notarize README.md &&
+    test -f README.md.aqua.json
+
+- Writing new file revision 0xa4e299e76721aff29cf5175bdd75b8d4239f50c95b48937f2250f149dfbf13b8 to README.md.aqua.json
+ok 3 - Create AQUA file for README.md
+
+expecting success: 
+    $notarize README.md  --witness nostr &&
+    test -f README.md.aqua.json
+
+npub:  npub1q6630dunsktyhzl8s4algmugnd73nntk99vkyyl8ayvqc5ddktwqxmmf46
+Witness event verification hash:  0xa4e299e76721aff29cf5175bdd75b8d4239f50c95b48937f2250f149dfbf13b8
+https://snort.social/npub1q6630dunsktyhzl8s4algmugnd73nntk99vkyyl8ayvqc5ddktwqxmmf46
+Is node:  true
+connected to wss://relay.damus.io/
+got event https://snort.social/nevent1qgsqddghk7fct9jt30nc27l5d7yfklgee4mzjktzz0n7jxqv2xkm9hqpz4mhxue69uhhyetvv9ujuerpd46hxtnfduhsqgrnc2p8zwslj29vsamexr4e62wkgua208emqwqg7v4vnk6vzs3lx5wljfch
+✅ AquaTree witnessed succesfully
+ok 4 - Witness README.md
+
+expecting success: 
+    $verify README.md
+
+file name README.md.aqua.json
+-> reading pure file README.md
+Checking aqua file: README.md.aqua.json
+-> reading aqua file README.md.aqua.json
+Is node:  true
+✅ All revisions verified successfully
+
+ok 5 - Verify witnessed README.md
+
+expecting success: 
+    $notarize README.md --rm
+
+ok 6 - Remove revision from README.md
+
+expecting success: 
+    test -f notarize.ts
+
+ok 7 - Check notarize.ts
+
+expecting success: 
+    $notarize notarize.ts &&
+    test -f notarize.ts.aqua.json
+
+- Writing new file revision 0xed6275c77fde1d7870eecfc20e64cc19c0d37bdd8283ffa5e578e6d24eaa45fb to notarize.ts.aqua.json
+ok 8 - Create AQUA file for notarize.ts
+
+expecting success: 
+    $notarize notarize.ts --witness tsa &&
+    test -f notarize.ts.aqua.json
+
+✅ AquaTree witnessed succesfully
+ok 9 - Witness notarize.ts TSA
+
+expecting success: 
+    $verify notarize.ts
+
+file name notarize.ts.aqua.json
+-> reading pure file notarize.ts
+Checking aqua file: notarize.ts.aqua.json
+-> reading aqua file notarize.ts.aqua.json
+✅ All revisions verified successfully
+
+ok 10 - Verify notarize.ts
+
+expecting success: 
+    test -f LICENSE
+
+ok 11 - Check LICENSE
+
+expecting success: 
+    $notarize LICENSE &&
+    test -f LICENSE.aqua.json
+
+- Writing new file revision 0xe94318a1c1f21c210fd9d278f7df0d32e37756a7331a40ee6d4d7118b7b8578e to LICENSE.aqua.json
+ok 12 - Create AQUA file for LICENSE
+
+expecting success: 
+    $notarize formatter.ts &&
+    test -f formatter.ts.aqua.json
+
+- Writing new file revision 0x08cb4e8407c00e83adb9d7f6565e02e0c60badca69ac5c5e4ace14b59e9dd967 to formatter.ts.aqua.json
+ok 13 - Create AQUA file for formatter.ts
+
+expecting success: 
+    $notarize README.md &&
+    test -f README.md.aqua.json
+
+[31m❌ file README.md has already been notarized[0m
+not ok 14 - Create AQUA file for README.md
+#	
+#	    $notarize README.md &&
+#	    test -f README.md.aqua.json
+#	
+
+expecting success: 
+    $notarize README.md,LICENSE,formatter.ts --witness eth --type cli &&
+    test -f LICENSE.aqua.json
+
+Using wallet: 0x568A94A8f0f3Dc0B245B853bEf572075c1Df5c50
+✅ All aquaTrees witnessed succesfully
+ok 15 - Witness LICENSE
+
+expecting success: 
+    $verify LICENSE
+
+file name LICENSE.aqua.json
+-> reading pure file LICENSE
+Checking aqua file: LICENSE.aqua.json
+-> reading aqua file LICENSE.aqua.json
+✅ All revisions verified successfully
+
+ok 16 - Verify witnessed LICENSE 
+
+expecting success: 
+    $verify formatter.ts
+
+file name formatter.ts.aqua.json
+-> reading pure file formatter.ts
+Checking aqua file: formatter.ts.aqua.json
+-> reading aqua file formatter.ts.aqua.json
+✅ All revisions verified successfully
+
+ok 17 - Verify witnessed formatter.ts
+
+expecting success: 
+    rm -f README.md.aqua.json &&
+    rm -f LICENSE.aqua.json &&
+    rm -f notarize.ts.aqua.json &&
+    rm -f README.md &&
+    rm -f LICENSE &&
+    rm -f notarize.ts &&
+    rm -f actual_output
+
+ok 18 - Cleanup test files
+
+# failed 1 among 18 test(s)
+1..18

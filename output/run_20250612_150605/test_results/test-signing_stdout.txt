@@ -1,0 +1,10 @@
+ok 1 - Setup test environment
+ok 2 - Check README.md
+ok 3 - Create AQUA file for README.md
+ok 4 - Sign README.md
+ok 5 - Check notarize.ts
+ok 6 - Create AQUA file for notarize.ts
+ok 7 - Witness notarize.ts.aqua.json
+ok 8 - Cleanup test files
+# passed all 8 test(s)
+1..8

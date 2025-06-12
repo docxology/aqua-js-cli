@@ -1,0 +1,12 @@
+file name test_modify_file.txt.aqua.json
+-> reading pure file test_modify_file.txt
+Checking aqua file: test_modify_file.txt.aqua.json
+-> reading aqua file test_modify_file.txt.aqua.json
+ ➡️  1.Verifying Revision: 0x4dbced08be6848b62514e14ef5636ecac76d9d710c8f65b0126ad97a5dd2a71c
+	 📄 Type: File.
+	 ❌ Error verifying revision type:file with hash 0x4dbced08be6848b62514e14ef5636ecac76d9d710c8f65b0126ad97a5dd2a71c - 
+ isSuccess false - isScalarSuccess true 
+  
+
+ ❌ One or more revision verification failed
+

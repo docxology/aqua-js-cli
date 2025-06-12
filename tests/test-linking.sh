@@ -2,7 +2,7 @@
 
 test_description='Test file linking functionality'
 
-. ./tests/sharness/sharness.sh
+. ./sharness/sharness.sh
 
 notarize="repo/dist/aqua.js notarize"
 verify="repo/dist/aqua.js verify"

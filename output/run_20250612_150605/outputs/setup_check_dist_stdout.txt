@@ -1,0 +1,6 @@
+total 12544
+drwxr-xr-x@  5 tetra  staff      160 Jun 12 15:06 .
+drwxr-xr-x@ 35 tetra  staff     1120 Jun 12 15:06 ..
+-rw-r--r--@  1 tetra  staff       20 Jun 12 15:06 aqua.d.ts
+-rwxr-xr-x@  1 tetra  staff  1165836 Jun 12 15:06 aqua.js
+-rw-r--r--@  1 tetra  staff  5247144 Jun 12 15:06 aqua.js.map

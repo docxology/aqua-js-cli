@@ -1,0 +1,10 @@
+Current Path: /Users/tetra/Documents/GitHub/aqua-js-cli/tests
+ok 1 - Setup test environment
+ok 2 - Copy README.md to README2.md
+ok 3 - Create initial AQUA file for README
+ok 4 - Modify README.md content by removing first character
+ok 5 - Notarize modified README.md
+ok 6 - Verify README.md after all modifications
+ok 7 - Cleanup test files
+# passed all 7 test(s)
+1..7

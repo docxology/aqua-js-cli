@@ -3,7 +3,7 @@
 test_description='Test file modifications and notarization with index updates'
  
 echo "Current Path: $(pwd)"
-. ./tests/sharness/sharness.sh
+. ./sharness/sharness.sh
 
 notarize="repo/dist/aqua.js notarize"
 verify="repo/dist/aqua.js verify"
@@ -24,7 +24,7 @@ test_expect_success 'Create initial AQUA file for README' '
 '
 
 test_expect_success 'Modify README.md content by removing first character' '
-    sed -i "1s/^.//" README.md &&
+    sed -i "" "1s/^.//" README.md &&
     test -f README.md &&
     # Verify that the file was actually modified
     ! cmp README.md README2.md >/dev/null 2>&1

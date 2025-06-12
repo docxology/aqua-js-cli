@@ -4,7 +4,7 @@ test: $(T)
 	@$(MAKE) --silent clean
 
 $(T): clean
-	./$@ $(TEST_OPTS) -v
+	cd tests && ./$(@F) $(TEST_OPTS) -v
 
 clean:
 	@rm -fr test-results

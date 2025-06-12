@@ -1,0 +1,7 @@
+ok 1 - Setup test environment
+ok 2 - Check README.md
+ok 3 - Create AQUA file for README.md
+ok 4 - Verify the output of verify.js
+ok 5 - Cleanup test files
+# passed all 5 test(s)
+1..5
